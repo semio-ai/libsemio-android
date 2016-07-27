@@ -995,12 +995,16 @@ public class ScriptInterpreter {
           public Instance apply(final Instance callee, final Instance[] params) throws Throwable {
             Method m = null;
             BindData data = (BindData)callee.getInternalData();
-            for(Method method : data.methods) {
+            for(Method method : data.methods)
+            {
               if(method.getParameterTypes().length != params.length) continue;
               m = method;
               break;
             }
-            if(m == null) throw new InvalidParameterList("No such call to " + m.getName() + " with " + params.length + " parameters", callee);
+            if(m == null)
+            {
+              throw new InvalidParameterList("No such call to " + callee.getToken() + " with " + params.length + " parameters", callee);
+            }
 
             Class<?>[] methodParams = m.getParameterTypes();
             Object to[] = new Object[methodParams.length];

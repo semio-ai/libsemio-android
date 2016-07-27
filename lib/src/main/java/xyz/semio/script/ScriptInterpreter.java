@@ -988,6 +988,7 @@ public class ScriptInterpreter {
 
         data = new BindData();
         data.methods = new ArrayList<Method>();
+        data.methods.add(method);
         data.that = this._target;
 
         Instance i = new Instance(Instance.Type.FUNCTION, new Function() {

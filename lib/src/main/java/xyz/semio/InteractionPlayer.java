@@ -45,6 +45,11 @@ public class InteractionPlayer {
     @Override
     public Object apply(InteractionState value) {
       if(!_playing) return null;
+      if(value == null)
+      {
+        stop();
+        return null;
+      }
 
       final String script = value.getScript();
       final Map<String, ScriptInterpreter.Instance> slots = value.getSlots();
@@ -77,6 +82,11 @@ public class InteractionPlayer {
     @Override
     public Object apply(String value) {
       if(!_playing) return null;
+      if(value == null)
+      {
+        stop();
+        return null;
+      }
       _interaction.next(value).then(_emitPhase);
       return null;
     }

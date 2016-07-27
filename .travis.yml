@@ -1,0 +1,17 @@
+language: android
+android:
+  components:
+    - build-tools-22.0.1
+    - android-22
+
+before_deploy:
+  - mv ./build/generated/*.jar ./libsemio-android-${TRAVIS_TAG}.jar
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_OAUTH_TOKEN
+  file: ./libsemio-android-${TRAVIS_TAG}.jar
+  skip_cleanup: true
+  on:
+    tags: true
+

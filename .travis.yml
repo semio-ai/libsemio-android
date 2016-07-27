@@ -5,7 +5,7 @@ android:
     - android-22
 
 before_deploy:
-  - mv ./build/generated/*.jar ./libsemio-android-${TRAVIS_TAG}.jar
+  - jar cvf libsemio-android-${TRAVIS_TAG}.jar -C lib/build/intermediates/classes/release xyz
 
 deploy:
   provider: releases
